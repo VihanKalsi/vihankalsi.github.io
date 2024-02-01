@@ -33,29 +33,9 @@ const responseData = `https://api.openweathermap.org/geo/1.0/direct?q=${selected
                 longitude = data[0].lon;
         } else{
             console.log("This is current location");
-            try{
-                currentResponse = getCurrentLocation();
-                latitude = (getCurrentLocation()).location.latitude;
-                longitude = (getCurrentLocation()).location.longitude;
-                }catch(error){
-                    console.log("some error..");
-                }
-
-            /*
-            getCurrentLocation()
-              .then((location) => {
-                lat = location.latitude;
-                lon = location.longitude;
-                console.log('User latitude:', lat);
-                console.log('User longitude:', lon);
-                // Now you can use latitude and longitude variables as needed
-                latitude = lat;
-                longitude = lon;
-              })
-              .catch((error) => {
-                console.error('Error getting user location:', error.message);
-              });
-              */
+            const currentLocation = await getCurrentLocation();
+            latitude = currentLocation.latitude;
+            longitude = currentLocation.longitude;
         }
 
         console.log(latitude + "lat");
@@ -121,7 +101,7 @@ async function updateAQIDisplay() {
     console.log("display AQI data");
 
     // Set color-coded indicator
-    /*
+
     if (aqiValue < 3) {
         // Good (Green)
         aqiIndicatorElement.style.backgroundColor = '#00e400';
@@ -132,7 +112,7 @@ async function updateAQIDisplay() {
         // Unhealthy (Red)
         aqiIndicatorElement.style.backgroundColor = '#ff0000';
     }
-    */
+
 
 }
 
