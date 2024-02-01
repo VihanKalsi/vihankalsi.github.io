@@ -121,6 +121,7 @@ async function updateAQIDisplay() {
     console.log("display AQI data");
 
     // Set color-coded indicator
+    /*
     if (aqiValue < 3) {
         // Good (Green)
         aqiIndicatorElement.style.backgroundColor = '#00e400';
@@ -131,6 +132,7 @@ async function updateAQIDisplay() {
         // Unhealthy (Red)
         aqiIndicatorElement.style.backgroundColor = '#ff0000';
     }
+    */
 
 }
 
