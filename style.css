@@ -66,12 +66,12 @@ input, textarea {
 
 /* Add this style for the AQI indicator */
 
+/* Align the AQI indicator to the center */
 #aqiIndicator {
     width: 50px; /* Set the width as needed */
     height: 50px; /* Set the height as needed */
     border-radius: 50%; /* Make it a circle */
-    margin-top: 10px auto; /* Adjust the margin as needed */
-    align-items: center;
+    margin: 10px auto !important; /* Center the indicator horizontally with auto margin */
 }
 
 /* Additional styling for color-coded indicators */
@@ -85,4 +85,8 @@ input, textarea {
 
 #aqiIndicator.red {
     background-color: #ff0000;
+}
+
+.centered {
+text-align: center;
 }
