@@ -74,7 +74,6 @@ input, textarea {
     margin: 10px auto !important; /* Center the indicator horizontally with auto margin */
 }
 
-
 /* Additional styling for color-coded indicators */
 #aqiIndicator.green {
     background-color: #00e400;
