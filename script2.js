@@ -24,8 +24,20 @@ async function fetchDataAndUpdateHtml() {
         const response = await fetch(responseData);
         console.log(responseData);
         const data = await response.json();
-        const latitude = data[0].lat;
-        const longitude = data[0].lon;
+        let latitude;
+        let longitude;
+
+        if(selectedLocation != "Current Location"){
+            latitude = data[0].lat;
+            longitude = data[0].lon;
+        } else {
+            console.log("This is current location");
+            const currentLocation = await getCurrentLocation();
+            latitude = currentLocation.latitude;
+            longitude = currentLocation.longitude;
+        }
+
+
 
         console.log(latitude + "lat");
         console.log(longitude + "lon");
@@ -98,7 +110,7 @@ async function updateHtmlWithData(data) {
         if (aqiValue <= 50 && o3Level < 70 && no2Level <70 && pm10Level <50 && pm25Level <25 && coLevel<9400) {
             // Good (Green)
             aqiIndicatorElement.style.backgroundColor = '#00e400';
-            consol.log("green");
+            console.log("green");
         } else if (aqiValue <= 100 && o3Level <= 140 && no2Level <=150 && pm10Level <=100 && pm25Level <=50 && coLevel<=12400) {
             // Moderate (Yellow)
             aqiIndicatorElement.style.backgroundColor = '#ffff00';
@@ -203,4 +215,23 @@ function updateImpactHtml(selectedPollutant, impact ) {
     } catch (error) {
         console.error('Error updating impact HTML:', error.message);
     }
+}
+
+function getCurrentLocation() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          resolve({ latitude, longitude });
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    } else {
+      reject(new Error('Geolocation is not supported by this browser.'));
+    }
+  });
 }
